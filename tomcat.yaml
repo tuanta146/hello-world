@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec: 
+      containers:
+      - name: tomcat
+        image: tdtuan146/tomcat:1
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: dockerhub      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-tomcat
+spec:
+  type: NodePort
+  ports:
+  - port: 8080        # service port mapping into POD
+    targetPort: 80    # pod port mapping into container
+    protocol: TCP
+    name: http
+    nodePort: 3008   # node port mapping into service ( 30000-32767)
+
+  #label Deployment
+  selector:
+    app: tomcat
