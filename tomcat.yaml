@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tomcat:41
+  name: tomcat:42
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tomcat:41
+      app: tomcat:42
   template:
     metadata:
       labels:
-        app: tomcat:41
+        app: tomcat:42
     spec: 
       containers:
-      - name: tomcat:41
-        image: tdtuan146/tomcat:41
+      - name: tomcat:42
+        image: tdtuan146/tomcat:42
         imagePullPolicy: "Always"
         ports:
         - containerPort: 8080
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-tomcat:41
+  name: my-tomcat:42
 spec:
   type: NodePort
   ports:
@@ -36,4 +36,4 @@ spec:
 
   #label Deployment
   selector:
-    app: tomcat:41
+    app: tomcat:42
