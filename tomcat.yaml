@@ -21,19 +21,3 @@ spec:
       imagePullSecrets:
       - name: dockerhub      
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: tomcat:43
-spec:
-  type: NodePort
-  ports:
-  - port: 8080        # service port mapping into POD
-    targetPort: 80    # pod port mapping into container
-    protocol: TCP
-    name: http
-    nodePort: 30008   # node port mapping into service ( 30000-32767)
-
-  #label Deployment
-  selector:
-    app: tomcat:43
