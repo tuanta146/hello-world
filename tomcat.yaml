@@ -1,19 +1,20 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tomcat:43
+  name: tomcat
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tomcat:43
+      app: tomcat
   template:
     metadata:
       labels:
-        app: tomcat:43
+        app: tomcat
     spec: 
       containers:
-      - name: tomcat:43
+      - name: tomcat
         image: tdtuan146/tomcat:43
         imagePullPolicy: "Always"
         ports:
